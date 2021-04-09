@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Banco</title>
+
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    </h:head>
+    <h:body>
+        <div class="container">
+            <!-- Page Content goes here -->
+            <div class="row">
+                <div class="col s12">
+                    <h:form>
+                        <label for=""><h2>Banca - Rota</h2></label>
+                        <label for=""><h4>Expertos en el manejo de su dinero</h4></label>
+
+                        <h:inputText id="nombre" maxlength="25" value="#{transaccionBanco.cliente1.nombre}" style="padding-top: 60px;" class="validate"/>
+                        <label for="nombre">Ingrese su nombre</label>
+
+                        <h:inputText id="vr_1" maxlength="8" value="#{transaccionBanco.cliente1.cantidad}" style="padding-top: 40px;" class="validate"/>
+                        <label for="vr_1">Ingrese un monto</label>
+
+                        <div style="padding-top: 20px;" class="row">
+                            <h:commandButton style="font-size: 15px; margin: 15px;" action="#{transaccionBanco.depoBanco()}" value="Confirmar Consignación" class="waves-effect orange darken-4 btn-large"></h:commandButton>
+                            <h:commandButton style="font-size: 15px; margin: 15px;" action="#{transaccionBanco.retiBanco()}" value="Realizar Retiro" class="waves-effect lime btn-large"></h:commandButton>
+                            <h:commandButton style="font-size: 15px; margin: 15px;" action="#{transaccionBanco.mostrarSaldoBanco()}" value="Consultar Saldo" class="waves-effect teal lighten-3 btn-large"></h:commandButton>
+                        </div>
+                    </h:form>
+                </div>
+                <div class="col s6" style="margin-top: 50px;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Cantidad</th>
+                                <th>Transacción Bancaria</th>
+                                <th>Saldo Actual</th>
+                            </tr>
+                        </thead>
+                        <c:forEach items="#{transaccionBanco.listaDepositos}" var="obl">
+                            <tr>
+                                <td>#{obl.nombre}</td>
+                                <td>#{obl.cantidad}</td>
+                                <td>#{obl.action}</td>
+                                <td>#{obl.saldo}</td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </div>
+                <h:form>
+                    <div class="col s6" style="margin-top: 50px;">
+                        <label for="vr_5" style="padding-top: 25px;"><h4>Saldo total depositado en el banco</h4></label>
+                        <h:inputText id="vr_5" value="#{transaccionBanco.cliente1.saldoTotalBanco}" style="padding-top: 10px; text-align: center;" class="validate"/>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+    </h:body>
+</html>
+
